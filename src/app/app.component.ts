@@ -12,6 +12,15 @@ import { TaskComponent } from "./task/task.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  constructor() {
+    console.log('Initial constructor');
+  }
+
+  ngOnInit() {
+    console.log('Initial OnInit');
+  }
+
   users = DUMMY_USERS;
 
   selectedUserId = 'u1';

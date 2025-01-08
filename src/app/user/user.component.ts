@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent {
+export class UserComponent implements OnChanges {
 
   @Input({required: true}) id!: string; //receiving it as i/p& passing it to parent comp
   @Input({required: true}) avatar!: string;
@@ -22,6 +22,12 @@ export class UserComponent {
 
   onSelectUser() {
     this.select.emit(this.id);
+  }
+
+  ngOnChanges(selectedName: SimpleChanges): void {
+    if (selectedName['name']?.currentValue) {
+      console.log('Selected Name:', selectedName['name'].currentValue);
+    }
   }
 
 }
