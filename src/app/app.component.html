@@ -2,15 +2,34 @@
 
 <main>
   <ul id="users">
-    <li>
+    <!-- for dynamically rendering we use loop to get users -->
+    <!-- here the users hold the DUMMY_USERS -->
+    <!-- instead of using users to get the single user info we use
+      user variable to get id, avt and name inside for loop -->
+    <!-- we track id to update the list dynamcally if list data changes -->
+
+      @for (user of users; track user.id) {
+        <li>
+          <app-user
+            [id]="user.id"
+            [avatar]="user.avatar"
+            [name]="user.name"
+            (select)="onSelectUser($event)"
+          />
+        </li>
+      }
+
+    <!-- old syntax before angular 17 for reference -->
+    <!-- <li *[ngFor]="let user of users">
       <app-user
-        [id]="users[0].id"
-        [avatar]="users[0].avatar"
-        [name]="users[0].name"
+        [id]="user.id"
+        [avatar]="user.avatar"
+        [name]="user.name"
         (select)="onSelectUser($event)"
       />
-    </li>
-    <li>
+    </li> -->
+
+    <!-- <li>
       <app-user
         [id]="users[1].id"
         [avatar]="users[1].avatar"
@@ -33,7 +52,16 @@
         [name]="users[3].name"
         (select)="onSelectUser($event)"
       />
-    </li>
+    </li> -->
   </ul>
-  <app-task [userId]="selectedUser.name"/>
+  <!-- it should not render if we dont select a user -->
+  <!-- to avoid it we use conditional content -->
+  <!-- here we check for the overall user so we use selectedUser instead of selectedUserId -->
+  <!-- if there is no selectedId then the selected user will be undefined 
+   to avoid we user selectedUser -->
+  @if (selectedUser) {
+    <app-task [name]="selectedUser.name" />
+  } @else {
+    <p id="fallback">Select a user to see their task's</p>
+  }
 </main>

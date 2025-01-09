@@ -14,6 +14,13 @@ export class UserComponent implements OnChanges {
   @Input({required: true}) avatar!: string;
   @Input({required: true}) name!: string;
 
+  // simplified way passing as object 
+  //  @Input({required: true}) user! : {
+  //   id: string,
+  //   avatar: string,
+  //   name: string
+  //  }
+
   @Output() select = new EventEmitter<string>(); //to output the data by emitting them
 
   get imagePath() {
