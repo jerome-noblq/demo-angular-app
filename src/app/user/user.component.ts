@@ -21,6 +21,8 @@ export class UserComponent implements OnChanges {
   //   name: string
   //  }
 
+  @Input({required: true}) selected! : boolean
+
   @Output() select = new EventEmitter<string>(); //to output the data by emitting them
 
   get imagePath() {
