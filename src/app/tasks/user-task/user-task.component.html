@@ -1,12 +1,11 @@
-<article>
+<app-card>
+  <article>
     <h2>{{ taskDetails.title }}</h2>
-    <time datetime="">{{ taskDetails.dueDate }}</time>
+    <!-- we use datepipe to format the date -->
+    <time datetime="">{{ taskDetails.dueDate | date: 'fullDate' }}</time>
     <p>{{ taskDetails.summary }}</p>
     <p class="actions">
-        <button (click)="onCompleteTask()">
-            Complete
-        </button>
+      <button (click)="onCompleteTask()">Complete</button>
     </p>
-</article>
-
-
+  </article>
+</app-card>

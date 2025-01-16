@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CardComponent } from "../../shared/card/card.component";
+import { DatePipe } from '@angular/common';
 
 // we could store this interface in a separate file: name.module.ts in same folder
 interface TaskDetails {
@@ -12,7 +14,7 @@ interface TaskDetails {
 @Component({
   selector: 'app-user-task',
   standalone: true,
-  imports: [],
+  imports: [CardComponent, DatePipe],
   templateUrl: './user-task.component.html',
   styleUrl: './user-task.component.css'
 })

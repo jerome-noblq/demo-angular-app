@@ -1,6 +1,14 @@
-<div>
+<app-card>
+  <!-- when we use an angular component as an wrapper around some another markup
+   it will by default not kept that markup which you wrap around it. instead it 
+   will replace it with its own template markup -->
+  <!-- it can be overcome by adding an another special element 'ng-content' in 
+    the template of the wrapping component -->
+  <!-- 'ng-content' acts as a placeholder for the wrapped markup -->
+  <!-- ng-conent will be replaced with the markup thats being rapped by the card
+   component -->
   <button [class.active]="selected" (click)="onSelectUser()">
     <img [src]="imagePath" [alt]="name" />
     <span>{{ name }}</span>
   </button>
-</div>
+</app-card>
