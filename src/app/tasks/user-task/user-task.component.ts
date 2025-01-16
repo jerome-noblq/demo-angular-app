@@ -14,8 +14,8 @@ interface TaskDetails {
 
 @Component({
   selector: 'app-user-task',
-  standalone: true,
-  imports: [CardComponent, DatePipe],
+  // standalone: true,
+  // imports: [ DatePipe],
   templateUrl: './user-task.component.html',
   styleUrl: './user-task.component.css'
 })

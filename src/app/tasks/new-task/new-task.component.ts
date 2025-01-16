@@ -5,9 +5,9 @@ import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-new-task',
-  standalone: true,
+  // standalone: true,
   // to use ngModel we need to import FormModule
-  imports: [ FormsModule ],
+  // imports: [ FormsModule ],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css'
 })
