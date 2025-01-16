@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { UserTaskComponent } from "./user-task/user-task.component";
 import { NewTaskComponent } from "./new-task/new-task.component";
 import { type NewTaskData } from "./new-task/new-task.model";
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-task',
@@ -18,38 +19,14 @@ export class TaskComponent {
 
   isAddingTask = false;
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ]
+  // dependency injection
+  // specify the dependency in the constructor and define the type
+  // angular only creates and reuse one instance so the different components ->
+  // operates on the same object in memory and on the same data
+  constructor(private taskService: TaskService) {}
 
   get selectedUserTask(){
-    return this.tasks.filter((task)=> task.userId === this.userId);
-  }
-
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task)=> task.id !== id); 
+    return this.taskService.getUserTask(this.userId);
   }
 
   onStartAddTask(){
@@ -60,14 +37,7 @@ export class TaskComponent {
     this.isAddingTask = false;
   }
 
-  onAddTask(taskData: NewTaskData) {
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date
-    })
-    this.isAddingTask = false;
-  }
+  // onAddTask(taskData: NewTaskData) {
+  //   this.isAddingTask = false;
+  // }
 }

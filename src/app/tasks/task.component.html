@@ -12,13 +12,13 @@
     </menu>
 </header>
 @if (isAddingTask) {
-    <app-new-task (cancel)="onCancelAddTask()" (add)="onAddTask($event)"/>
+    <app-new-task [userId]="userId" (close)="onCancelAddTask()"/>
 }
 
 <ul>
     @for (task of selectedUserTask; track task.id) {
         <li>
-            <app-user-task (completed)="onCompleteTask($event)" [taskDetails]="task"/>
+            <app-user-task [taskDetails]="task"/>
         </li>
     }
     <!-- <li>

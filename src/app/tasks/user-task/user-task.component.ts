@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CardComponent } from "../../shared/card/card.component";
 import { DatePipe } from '@angular/common';
+import { TaskService } from '../task.service';
 
 // we could store this interface in a separate file: name.module.ts in same folder
 interface TaskDetails {
@@ -22,11 +23,13 @@ export class UserTaskComponent {
   
   @Input({required: true}) taskDetails! : TaskDetails;
   // when emitting complete event we need to pass the type
-  @Output() completed = new EventEmitter<string>();
+  // @Output() completed = new EventEmitter<string>();
+
+  private taskService = inject(TaskService);
 
   onCompleteTask() {
     // to share information with parent component we pass id
-    this.completed.emit(this.taskDetails.id);
+    this.taskService.removeTask(this.taskDetails.id);
   }
 
 }
